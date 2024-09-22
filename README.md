@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/7cfc3469-db94-4b27-850d-aa1b0603a929)Studying ML as a side hobbie, i want to master it in 3-6 months (first ML then DL), i am very beginner but i am already falling in love with it. Love the applications of math and statistics on it
+Studying ML as a side hobbie, i want to master it in 3-6 months (first ML then DL), i am very beginner but i am already falling in love with it. Love the applications of math and statistics on it
 
 For Multiple Linear Regression 
 # Functions:
