@@ -16,10 +16,14 @@ def calcular_custo_e_vetorgradiente(x_test,y_test,w_vector,b): # Calcula o custo
     derivative_b = sum(error_vector) / m # Calcula a derivada de b, que é mais simples ja que existe apenas um b
     return derivative_w_vector, derivative_b
 
-def calcular_custo(x_train,y_test, w_vector, b): # Calcular o custo para conseguirmos criar um grafico depois
+def calcular_custo(x_train,y_test, w_vector, b, lambdafeature): # Calcular o custo para conseguirmos criar um grafico depois
+    m = np.shape(x_train)[0]
     hypothesis_vector = calcular_hypothesis(x_train, w_vector, b) # Pega a hipótese atual
     error_vector = hypothesis_vector - y_test  # Cria o vetor de erro
     custo = np.sum(error_vector ** 2) / (2*len(y_test)) # calcula o custo
+    lambdavector = np.sum(w_vector ** 2)
+    lambdavector = (lambdafeature * lambdavector) / (2*m)
+    custo += lambdavector
     return custo
 
 # Exibe o custo da função ao longo do tempo em TUDO
@@ -139,7 +143,7 @@ for times in range(10000):
     derivative_w += lambdacalc  # Aplica a Regularização
     w_vector = w_vector - (l*derivative_w)
     b = b - (l*derivative_b)
-    cost.append(calcular_custo(x_train,y_train,w_vector,b))
+    cost.append(calcular_custo(x_train,y_train,w_vector,b,lambdafeature))
     iterations.append(times)
 cost = np.array(cost)
 iterations = np.array(iterations)
@@ -148,6 +152,7 @@ costandfunction = np.column_stack((cost, iterations))
 
 
 plot_model(x_train,w_vector,y_train,b)
+plot_cost_function(0,10000,iterations,cost)
 
 
 # Plotando apenas as primeiras 10.000 iterações
