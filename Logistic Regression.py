@@ -50,7 +50,23 @@ def normalization(x_train): # Função para normalizar as variaveis do X_train
 def plot_cost(iterations,cost):# Plot the cost function
     plt.plot(iterations, cost)
     plt.show()
-
+x_trainoriginal = np.array([
+    [1.0, 2.1, 3.2, 4.5],
+    [2.3, 3.2, 4.0, 5.1],
+    [3.1, 3.5, 4.7, 5.9],
+    [4.5, 5.1, 6.3, 6.8],
+    [5.1, 6.7, 7.0, 8.1],
+    [6.2, 8.5, 9.1, 9.5],
+    [7.1, 9.2, 10.0, 11.2],
+    [8.5, 10.3, 11.5, 12.6],
+    [9.0, 11.2, 12.1, 13.4],
+    [10.1, 12.0, 13.7, 14.1],
+    [10.5, 11.9, 13.5, 14.0],
+    [11.2, 13.5, 14.1, 15.8],
+    [12.3, 14.6, 15.0, 16.9],
+    [13.1, 15.2, 16.1, 17.5],
+    [14.2, 16.3, 17.2, 18.4]
+])
 x_train = np.array([
     [1.0, 2.1, 3.2, 4.5],
     [2.3, 3.2, 4.0, 5.1],
@@ -91,8 +107,22 @@ for i in range(50000):
     iterations.append(i)
 
 
+predictions = prediction(x_train, w_vec, b)
+print(predictions)
+size = np.shape(predictions)[0]
+prediction_vector = np.zeros(size)
+for i in range(size):
+    if predictions[i] > 0.4:
+        prediction_vector[i] = 1
+
+print(prediction_vector)
 
 
+# Tentando usar dimensionalidade para reduzir a data
+plt.scatter(x_trainoriginal[:,0],prediction_vector,color="blue")
 
-
+plt.show()
+plt.scatter(x_trainoriginal[:,0],y_train,color="red")
+plt.plot(x_trainoriginal[:,0],predictions)
+plt.show()
 
